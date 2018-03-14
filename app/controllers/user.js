@@ -12,9 +12,9 @@ module.exports = (app) => {
         const UserDAO = new app.app.daos.User(db);
         if (req.body._id.length == 0) {
             delete req.body._id;
-            UserDAO.add(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'))
+            UserDAO.add(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'));
         } else
-            UserDAO.update(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'))
+            UserDAO.update(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'));
     }
 
     controller.remove = (req, res) => {
