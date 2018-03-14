@@ -1,15 +1,14 @@
 module.exports = (app) => {
 
-    const db = app.config.nedb;
+    const db = app.config.nedb,
+        UserDAO = new app.app.daos.User(db);
     let controller = {};
 
     controller.list = (req, res) => {
-        const UserDAO = new app.app.daos.User(db);
         UserDAO.list((err, result) => err == true ? console.log(err) : res.render('user/list', { listUser: result, user: [{ _id: '', name: '', password: '' }] }));
     }
 
     controller.add = (req, res) => {
-        const UserDAO = new app.app.daos.User(db);
         if (req.body._id.length == 0) {
             delete req.body._id;
             UserDAO.add(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'));
@@ -18,12 +17,10 @@ module.exports = (app) => {
     }
 
     controller.remove = (req, res) => {
-        const UserDAO = new app.app.daos.User(db);
         UserDAO.remove(req.params.id, (err, result) => err == true ? console.log(err) : res.redirect('/'));
     }
 
     controller.consult = (req, res) => {
-        const UserDAO = new app.app.daos.User(db);
         UserDAO.consult(req.params.id, (err, result) => err == true ? console.log(err) : res.render('user/list', { listUser: [], user: result }));
     }
 

@@ -19,7 +19,6 @@ User.prototype.consult = function (id, callback) {
 }
 
 User.prototype.update = function (dados, callback) {
-    console.log(dados);
     this._db.update({ _id: dados._id },  dados , {}, (err, result) => callback(err, result));
 }
 

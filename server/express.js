@@ -13,8 +13,8 @@ app.use(express.static('./app/public'));
 
 consign()
     .include('config')
-    .then('app/controllers')
     .then('app/daos')
+    .then('app/controllers')
     .then('app/routes')
     .into(app)
     
