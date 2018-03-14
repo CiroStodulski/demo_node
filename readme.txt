@@ -18,3 +18,6 @@ requirements
 
  node js 
  in directory of the application, use npm start
+
+user: joao
+assword: 123
