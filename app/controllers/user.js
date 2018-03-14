@@ -1,41 +1,30 @@
 module.exports = (app) => {
 
     const db = app.config.nedb;
-
     let controller = {};
 
-
-    controller.listar = (req, res) => {
-
-        res.send('listar users')
-
+    controller.list = (req, res) => {
+        const UserDAO = new app.app.daos.User(db);
+        UserDAO.list((err, result) => err == true ? console.log(err) : res.render('user/list', { listUser: result, user: [{ _id: '', name: '', password: '' }] }));
     }
 
-    controller.dados = (req, res) => {
-        
+    controller.add = (req, res) => {
         const UserDAO = new app.app.daos.User(db);
+        if (req.body._id.length == 0) {
+            delete req.body._id;
+            UserDAO.add(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'))
+        } else
+            UserDAO.update(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'))
+    }
 
-        let dados = [
-            {
-                nome : 'ciro',
-                password : '123'
-            },
-            {
-                nome: 'leonardo',
-                password: '123'
-            },
-            {
-                nome: 'joao',
-                password: '123'
-            }
-        ]
+    controller.remove = (req, res) => {
+        const UserDAO = new app.app.daos.User(db);
+        UserDAO.remove(req.params.id, (err, result) => err == true ? console.log(err) : res.redirect('/'));
+    }
 
-        UserDAO.dados(dados, (err, result) => {
-            err == true
-                ? res.send(err)
-                : res.send(result);
-        })
-
+    controller.consult = (req, res) => {
+        const UserDAO = new app.app.daos.User(db);
+        UserDAO.consult(req.params.id, (err, result) => err == true ? console.log(err) : res.render('user/list', { listUser: [], user: result }));
     }
 
     return controller;

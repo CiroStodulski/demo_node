@@ -2,9 +2,13 @@ module.exports = (app) => {
 
     const userController = app.app.controllers.user;
 
-    app.get('/', userController.listar);
+    app.route('/')
+        .get(userController.list)
+        .post(userController.add);
 
-    app.get('/dados', userController.dados);
+    app.route('/:id')
+        .get(userController.remove)
+        .post(userController.consult);
 
-
+        
 }
