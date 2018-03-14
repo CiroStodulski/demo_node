@@ -16,7 +16,7 @@
                 <div class="list-group">
                     <div class="row">
                         <div class="col-sm-6">
-                            <form action="/" method="POST">
+                            <form action="/user" method="POST">
                                 <input type="hidden" class="form-control" id="_id" name="_id" value="<%= user[0]._id %>">
                                 <div class="form-group">
                                     <label for="name">Name:</label>
@@ -50,11 +50,11 @@
                                                         <%= listUser[i].password %>
                                                     </td>
                                                     <td>
-                                                        <form action="/<%=listUser[i]._id%>" method="POST">
+                                                        <form action="/user/<%=listUser[i]._id%>" method="POST">
                                                             <button type="submit" class="btn btn-default">
                                                                 <span class="glyphicon glyphicon-pencil"></span>
                                                             </button>
-                                                            <a href="/<%=listUser[i]._id%>" class="btn btn-default">
+                                                            <a href="/user/<%=listUser[i]._id%>" class="btn btn-default">
                                                                 <span class="glyphicon glyphicon-trash"></span>
                                                             </a>
                                                         </form>

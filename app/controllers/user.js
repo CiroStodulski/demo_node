@@ -11,13 +11,13 @@ module.exports = (app) => {
     controller.add = (req, res) => {
         if (req.body._id.length == 0) {
             delete req.body._id;
-            UserDAO.add(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'));
+            UserDAO.add(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/user'));
         } else
-            UserDAO.update(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/'));
+            UserDAO.update(req.body, (err, result) => err == true ? console.log(err) : res.redirect('/user'));
     }
 
     controller.remove = (req, res) => {
-        UserDAO.remove(req.params.id, (err, result) => err == true ? console.log(err) : res.redirect('/'));
+        UserDAO.remove(req.params.id, (err, result) => err == true ? console.log(err) : res.redirect('/user'));
     }
 
     controller.consult = (req, res) => {
