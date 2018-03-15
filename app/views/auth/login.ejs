@@ -20,6 +20,18 @@
             </div>
 
             <% } %>
+            <% if(suc.length > 0 ){ %>
+
+              <div class="alert alert-success">
+                <strong>Attention</strong>
+                <ul>
+                  <li>
+                    <%=   suc %>
+                  </li>
+                </ul>
+              </div>
+  
+              <% } %>
               <form action="/login" method="POST">
                 <div class="form-group">
                   <label for="name">Login:</label>

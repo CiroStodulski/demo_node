@@ -2,14 +2,12 @@ module.exports = (app) => {
 
     const controller = app.app.controllers.auth;
 
-
-
     app.all('/', controller.login);
 
-    app.post('/login', controller.auth)
+    app.route('/login')
+        .post(controller.auth)
+        .get(controller.logout);
 
-    app.all('/*', controller.check)
-
-   
+    app.all('/*', controller.check);
 
 } 
