@@ -6,6 +6,7 @@ module.exports = (app) => {
         UserDAO = new app.app.daos.User(db);
 
     controller.list = (req, res) => {
+
         UserDAO.list((err, result) => {
             err == true
                 ? console.log(err)

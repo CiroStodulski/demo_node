@@ -15,19 +15,21 @@ module.exports = (app) => {
                     ? (req.session.auth = true) == true
                         ? res.redirect('/user')
                         : res.redirect('/')
-                    : res.render('auth/login', { msg: 'user is not defound!', suc:'' });
+                    : res.render('auth/login', { msg: 'user is not defound!', suc: '' });
         })
     };
 
     controller.check = (req, res, next) => {
-        req.session.auth == true
+        req.session.auth
             ? next()
             : res.render('auth/login', { msg: 'session is not loaded, you need authentication', suc: '' });
     };
 
     controller.logout = (req, res) => {
-        delete req.session.auth;
-        res.render('auth/login', { suc: 'see you later!', msg: '' });
+        req.session.destroy((err) => {
+            res.render('auth/login', { suc: 'see you later!', msg: '' });
+        });
+
     }
 
     return controller;
