@@ -21,4 +21,4 @@ requirements
  in directory of the application, use npm start
 
 user: joao
-assword: 123
+password: 123
